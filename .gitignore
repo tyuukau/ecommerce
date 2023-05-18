@@ -1,0 +1,5 @@
+frontend/node_modules/
+backend/base/__pycache__/
+backend/base/migrations/
+backend/backend/__pycache__/
+*.pyc
