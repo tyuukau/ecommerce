@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
-// import axios from "axios";
-
 import { Row, Col } from "react-bootstrap";
-
 import { useDispatch, useSelector } from "react-redux";
 
 // import products from "../products";
@@ -13,6 +10,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 
 function HomeScreen() {
+  
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { error, loading, products } = productList;

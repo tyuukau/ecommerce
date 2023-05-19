@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-// import axios from "axios";
-
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Row, Col, Button, Image, ListGroup, Card, Form } from "react-bootstrap";
+
 import Rating from "../components/Rating";
 
 // import Product from "../components/Product";
