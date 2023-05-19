@@ -7,10 +7,11 @@ import logger from 'redux-logger'
 // And use redux-batched-subscribe as an example of adding enhancers
 // import { batchedSubscribe } from 'redux-batched-subscribe'
 
-import { productListReducer } from './reducers/productReducers'
+import { productListReducer, productDetailsReducer } from './reducers/productReducers'
 
 const reducer = {
     productList: productListReducer,
+    productDetails: productDetailsReducer,
 }
 
 const preloadedState = {
