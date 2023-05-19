@@ -1,20 +1,21 @@
-// file: store.ts
 import { configureStore } from '@reduxjs/toolkit'
 
-// We'll use redux-logger just as an example of adding another middleware
 import logger from 'redux-logger'
 
-// And use redux-batched-subscribe as an example of adding enhancers
-// import { batchedSubscribe } from 'redux-batched-subscribe'
-
 import { productListReducer, productDetailsReducer } from './reducers/productReducers'
+import { cartReducer } from './reducers/cartReducers'
 
 const reducer = {
     productList: productListReducer,
     productDetails: productDetailsReducer,
+    cart: cartReducer,
 }
 
+const cartItemsFromStorage = localStorage.getItem('cartItems') ?
+JSON.parse(localStorage.getItem('cartItems')) : []
+
 const preloadedState = {
+    cart: { cartItems: cartItemsFromStorage }
 }
 
 // const debounceNotify = _.debounce((notify) => notify())
