@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 // import axios from "axios";
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Row, Col, Button, Image, ListGroup, Card, Form } from "react-bootstrap";
 import Rating from "../components/Rating";
 
@@ -21,6 +21,7 @@ function ProductScreen() {
   const { error, loading, product } = productDetails;
 
   let { id } = useParams();
+  const navigate = useNavigate();
   // const product = products.find((product) => product._id === id);
   // const [product, setProduct] = useState([]);
 
@@ -33,6 +34,11 @@ function ProductScreen() {
     // fetchProduct();
     dispatch(listProductDetails(id));
   }, [id, dispatch]);
+
+  const addToCartHandler = () => {
+    // console.log('Add to cart:', id)
+    navigate(`/cart/${id}?qty=${qty}`)
+  }
 
   return (
     <div>
@@ -110,7 +116,8 @@ function ProductScreen() {
                 )}
                 <ListGroup.Item>
                   <Button
-                    class="button-block"
+                    onClick={addToCartHandler}
+                    className="button-block"
                     disabled={product.countInStock === 0}
                     type="button"
                   >
