@@ -3,10 +3,16 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+// import NavDropdown from "react-bootstrap/NavDropdown";
 
 import { LinkContainer } from "react-router-bootstrap";
 
+/**
+ * This is a React component that renders a header with a navigation bar and links to a shopping cart
+ * and login page.
+ * @returns The Header component is being returned, which contains a Bootstrap Navbar with links to the
+ * Cart and Login pages.
+ */
 function Header() {
   return (
     <div>
@@ -30,7 +36,7 @@ function Header() {
                     <i className="fas fa-user"></i> Login
                   </Nav.Link>
                 </LinkContainer>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
                     Another action
@@ -42,7 +48,7 @@ function Header() {
                   <NavDropdown.Item href="#action/3.4">
                     Separated link
                   </NavDropdown.Item>
-                </NavDropdown>
+                </NavDropdown> */}
               </Nav>
             </Navbar.Collapse>
           </Container>
