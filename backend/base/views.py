@@ -2,7 +2,7 @@
 from django.http import JsonResponse
 
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 
 from .models import Product
 from .serializers import ProductSerializer, UserSerializer, UserSerializerWithTokens
@@ -74,3 +74,4 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+    
