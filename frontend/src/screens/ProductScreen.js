@@ -21,6 +21,10 @@ import Rating from "../components/Rating";
 import { listProductDetails } from "../actions/productActions";
 
 function ProductScreen() {
+  /* `const [qty, setQty] = useState(1);` is initializing a state variable `qty` with a default value
+  of 1 and a function `setQty` to update the value of `qty`. This is used to keep track of the
+  quantity of the product that the user wants to add to the cart. The `useState` hook is a built-in
+  hook in React that allows functional components to have state variables. */
   const [qty, setQty] = useState(1);
 
   const dispatch = useDispatch();
@@ -29,7 +33,7 @@ function ProductScreen() {
   const { loading, error, product } = productDetails;
 
   let { id } = useParams();
-  
+
   const navigate = useNavigate();
   // const product = products.find((product) => product._id === id);
   // const [product, setProduct] = useState([]);
@@ -38,6 +42,9 @@ function ProductScreen() {
     dispatch(listProductDetails(id));
   }, [id, dispatch]);
 
+  /**
+   * The function navigates to the cart page with the specified product ID and quantity.
+   */
   const addToCartHandler = () => {
     navigate(`/cart/${id}?qty=${qty}`);
   };
@@ -57,9 +64,11 @@ function ProductScreen() {
       {loading && <Loader />}
 
       <Row>
+
         <Col md={6}>
           <Image src={product.image} alt={product.name} fluid />
         </Col>
+
         <Col md={3}>
           <ListGroup variant="flush">
             <ListGroup.Item>
@@ -76,9 +85,11 @@ function ProductScreen() {
             <ListGroup.Item>Description: {product.description}</ListGroup.Item>
           </ListGroup>
         </Col>
+
         <Col md={3}>
           <Card>
             <ListGroup variant="flush">
+
               <ListGroup.Item>
                 <Row>
                   <Col>Price:</Col>
@@ -87,6 +98,7 @@ function ProductScreen() {
                   </Col>
                 </Row>
               </ListGroup.Item>
+
               <ListGroup.Item>
                 <Row>
                   <Col>Status:</Col>
@@ -97,6 +109,7 @@ function ProductScreen() {
                   </Col>
                 </Row>
               </ListGroup.Item>
+
               {product.countInStock > 0 && (
                 <ListGroup.Item>
                   <Row>
@@ -117,6 +130,7 @@ function ProductScreen() {
                   </Row>
                 </ListGroup.Item>
               )}
+
               <ListGroup.Item>
                 <Button
                   onClick={addToCartHandler}
@@ -127,9 +141,11 @@ function ProductScreen() {
                   Add to Cart
                 </Button>
               </ListGroup.Item>
+
             </ListGroup>
           </Card>
         </Col>
+
       </Row>
     </div>
   );

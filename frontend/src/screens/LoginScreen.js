@@ -13,6 +13,13 @@ import FormContainer from "../components/FormContainer";
 import { login } from "../actions/userActions";
 
 function LoginScreen() {
+  /* `const [email, setEmail] = useState("");` and `const [password, setPassword] = useState("");` are
+  using the `useState` hook to declare two state variables `email` and `password` and their
+  corresponding setter functions `setEmail` and `setPassword`. The initial value of both state
+  variables is an empty string `""`. These state variables are used to store the values of the email
+  and password input fields in the login form. Whenever the user types something in the input
+  fields, the corresponding setter function is called to update the state variable with the new
+  value. */
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -32,6 +39,13 @@ function LoginScreen() {
     }
   }, [navigate, userInfo, redirect]);
 
+  /**
+   * This function prevents the default form submission behavior and dispatches a login action with the
+   * email and password as parameters.
+   * @param e - The "e" parameter is an event object that is passed to the function when the form is
+   * submitted. It is used to prevent the default behavior of the form submission, which would cause
+   * the page to reload.
+   */
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
@@ -39,6 +53,7 @@ function LoginScreen() {
 
   return (
     <FormContainer>
+
       <h1>Sign In</h1>
 
       {error && (
@@ -50,6 +65,7 @@ function LoginScreen() {
       {loading && <Loader />}
 
       <Form onSubmit={submitHandler}>
+
         <Form.Group controlId="email">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -73,6 +89,7 @@ function LoginScreen() {
         <Button type="submit" variant="primary">
           Sign In
         </Button>
+
       </Form>
 
       <Row className="py-3">
@@ -83,6 +100,7 @@ function LoginScreen() {
           </Link>
         </Col>
       </Row>
+
     </FormContainer>
   );
 }
