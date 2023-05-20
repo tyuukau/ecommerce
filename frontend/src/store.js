@@ -16,8 +16,12 @@ const reducer = {
 const cartItemsFromStorage = localStorage.getItem('cartItems') ?
 JSON.parse(localStorage.getItem('cartItems')) : []
 
+const userInfoFromStorage = localStorage.getItem('userInfo') ? 
+JSON.parse(localStorage.getItem('userInfo')) : null
+
 const preloadedState = {
-    cart: { cartItems: cartItemsFromStorage }
+    cart: { cartItems: cartItemsFromStorage },
+    userLogin: { userInfo: userInfoFromStorage }
 }
 
 // const debounceNotify = _.debounce((notify) => notify())
