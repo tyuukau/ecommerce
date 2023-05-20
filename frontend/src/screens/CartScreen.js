@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
+
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
+
 import {
   Row,
   Col,
@@ -10,21 +13,22 @@ import {
   Button,
   Card,
 } from "react-bootstrap";
+
 import Message from "../components/Message";
+
 import { addToCart, removeFromCart } from "../actions/cartActions";
 
 function CartScreen() {
+  const dispatch = useDispatch();
+
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
   let { id } = useParams();
   const navigate = useNavigate();
 
   const location = useLocation();
   const qty = location.search ? Number(location.search.split("=")[1]) : 1;
-
-  const dispatch = useDispatch();
-
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
-  console.log("cartItems", cartItems);
 
   useEffect(() => {
     if (id) {
@@ -33,7 +37,6 @@ function CartScreen() {
   }, [dispatch, id, qty]);
 
   const removeFromCartHandler = (id) => {
-    // console.log("Remove:", id);
     dispatch(removeFromCart(id))
   };
 

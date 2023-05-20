@@ -1,28 +1,22 @@
 import React, { useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+
 import { useDispatch, useSelector } from "react-redux";
 
-// import products from "../products";
-import Product from "../components/Product";
-import { listProducts } from "../actions/productActions";
+import { Row, Col } from "react-bootstrap";
 
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import Product from "../components/Product";
+
+import { listProducts } from "../actions/productActions";
 
 function HomeScreen() {
   const dispatch = useDispatch();
+
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
-  // const [products, setProducts] = useState([]);
-
   useEffect(() => {
-    console.log("Use Effect triggered.");
-    // async function fetchProducts() {
-    //   const { data } = await axios.get("/api/products/");
-    //   setProducts(data);
-    // }
-    // fetchProducts();
     dispatch(listProducts());
   }, [dispatch]);
 
