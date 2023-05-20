@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from .models import Product
-from .serializers import ProductSerializer
+from .serializers import ProductSerializer, UserSerializer, UserSerializerWithTokens
 # from .products import products
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -26,6 +26,12 @@ def getRoutes(request):
     return Response(routes)
 
 @api_view(['GET'])
+def getUserProfile(request):
+    user = request.user
+    serializer = UserSerializer(user, many=False)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 def getProducts(request):
     products = Product.objects.all()
     serializer = ProductSerializer(products, many=True)
@@ -39,16 +45,32 @@ def getProduct(request, pk):
     return Response(serializer.data)
     
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
+    # @classmethod
+    # def get_token(cls, user):
+    #     token = super().get_token(user)
 
-        # Add custom claims
-        token['username'] = user.username
-        token['message'] = "Hello World"
-        # ...
+    #     # Add custom claims
+    #     token['username'] = user.username
+    #     token['message'] = "Hello World"
+    #     # ...
 
-        return token
+    #     return token
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        
+        serializer = UserSerializerWithTokens(self.user).data
+        for k, v in serializer.items():
+            data[k] = v
+
+        # refresh = self.get_token(self.user)
+
+        # data["username"] = self.user.username
+        # data["email"] = self.user.email
+
+        # if api_settings.UPDATE_LAST_LOGIN:
+        #     update_last_login(None, self.user)
+
+        return data
     
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
