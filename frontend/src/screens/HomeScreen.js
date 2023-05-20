@@ -10,10 +10,9 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 
 function HomeScreen() {
-  
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
-  const { error, loading, products } = productList;
+  const { loading, error, products } = productList;
 
   // const [products, setProducts] = useState([]);
 
@@ -30,20 +29,23 @@ function HomeScreen() {
   return (
     <div>
       <h1>Latest Products</h1>
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <Message variant='danger'> {error.status}: {error.statusText} </Message>
-      ) : (
-        <Row>
-          {products.map((product) => (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-              {/* <h3>{product.name}</h3> */}
-              <Product product={product} />
-            </Col>
-          ))}
-        </Row>
+
+      {error && (
+        <Message variant="danger">
+          {" "}
+          {error.status}: {error.statusText}{" "}
+        </Message>
       )}
+      {loading && <Loader />}
+
+      <Row>
+        {products.map((product) => (
+          <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+            {/* <h3>{product.name}</h3> */}
+            <Product product={product} />
+          </Col>
+        ))}
+      </Row>
     </div>
   );
 }

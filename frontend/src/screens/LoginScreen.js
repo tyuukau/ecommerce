@@ -16,16 +16,16 @@ function LoginScreen() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const redirect = location.search ? location.search.split('=')[1] : '/';
+  const redirect = location.search ? location.search.split("=")[1] : "/";
 
-  const userLogin = useSelector(state => state.userLogin);
+  const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
   useEffect(() => {
     if (userInfo) {
-        navigate(redirect);
+      navigate(redirect);
     }
-  }, [navigate, userInfo, redirect])
+  }, [navigate, userInfo, redirect]);
 
   const dispatch = useDispatch();
 
@@ -37,6 +37,14 @@ function LoginScreen() {
   return (
     <FormContainer>
       <h1>Sign In</h1>
+
+      {error && (
+        <Message variant="danger">
+          {" "}
+          {error.status}: {error.statusText}{" "}
+        </Message>
+      )}
+      {loading && <Loader />}
 
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">
