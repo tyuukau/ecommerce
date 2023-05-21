@@ -9,6 +9,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 
 import { LinkContainer } from "react-router-bootstrap";
 
+import { logout } from "../actions/userActions";
+
 /**
  * This is a React component that renders a header with a navigation bar and links to a shopping cart
  * and login page.
@@ -16,11 +18,14 @@ import { LinkContainer } from "react-router-bootstrap";
  * Cart and Login pages.
  */
 function Header() {
+  const dispatch = useDispatch();
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   const logoutHandler = () => {
-    console.log('Logout');
+    // console.log('Logout');
+    dispatch(logout());
   };
 
   return (
