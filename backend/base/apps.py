@@ -6,4 +6,7 @@ class BaseConfig(AppConfig):
     name = 'base'
 
     def ready(self):
+        """
+        This function imports signals from the base module.
+        """
         import base.signals

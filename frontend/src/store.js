@@ -16,7 +16,7 @@ is imported from `userReducers.js`. These reducer functions are then combined in
 `reducer` object that is passed to the `configureStore` function to create the Redux store. */
 import { productListReducer, productDetailsReducer } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
-import { userLoginReducer } from './reducers/userReducers'
+import { userLoginReducer, userRegisterReducer } from './reducers/userReducers'
 
 /* `const reducer` is an object that combines all the individual reducer functions from separate files
 into a single object. Each reducer function is assigned to a key in the `reducer` object, with the
@@ -29,6 +29,7 @@ const reducer = {
     productDetails: productDetailsReducer,
     cart: cartReducer,
     userLogin: userLoginReducer,
+    userRegister: userRegisterReducer,
 }
 
 /* These lines of code are retrieving data from the browser's local storage and parsing it into
