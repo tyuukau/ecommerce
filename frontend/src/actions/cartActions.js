@@ -4,6 +4,7 @@ import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
   CART_SHIPPING_ADDRESS_SAVE,
+  CART_PAYMENT_METHOD_SAVE,
 } from "../constants/cartConstants";
 
 /**
@@ -53,4 +54,11 @@ export const saveShippingAddress = (data) => (dispatch) => {
   localStorage.setItem("shippingAddress", JSON.stringify(data));
 };
 
-export const savePaymentMethod = () => {};
+export const savePaymentMethod = (data) => (dispatch) => {
+  dispatch({
+    type: CART_PAYMENT_METHOD_SAVE,
+    payload: data,
+  });
+
+  localStorage.setItem("paymentMethod", JSON.stringify(data));
+};

@@ -2,6 +2,7 @@ import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
   CART_SHIPPING_ADDRESS_SAVE,
+  CART_PAYMENT_METHOD_SAVE,
 } from "../constants/cartConstants";
 
 /**
@@ -17,7 +18,10 @@ import {
  * exists in the cartItems array and either updates the existing item or adds a new item to the array.
  * If the action type is `CART_REMOVE_ITEM`, it removes the item from the cart.
  */
-export const cartReducer = (state = { cartItems: [], shippingAddress: {} }, action) => {
+export const cartReducer = (
+  state = { cartItems: [], shippingAddress: {} },
+  action
+) => {
   switch (action.type) {
     case CART_ADD_ITEM:
       const item = action.payload;
@@ -47,7 +51,13 @@ export const cartReducer = (state = { cartItems: [], shippingAddress: {} }, acti
       return {
         ...state,
         shippingAddress: action.payload,
-      }
+      };
+
+    case CART_PAYMENT_METHOD_SAVE:
+      return {
+        ...state,
+        paymentMethod: action.payload,
+      };
 
     default:
       return state;
