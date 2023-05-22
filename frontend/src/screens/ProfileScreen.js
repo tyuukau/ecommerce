@@ -38,7 +38,7 @@ function ProfileScreen() {
       navigate("/login");
     } else {
       if (!userProfile || !userProfile.name) {
-        dispatch(getUserProfile('profile'));
+        dispatch(getUserProfile("profile"));
       } else {
         setName(userProfile.name);
         setEmail(userProfile.email);
@@ -67,6 +67,14 @@ function ProfileScreen() {
     <Row>
       <Col md={3}>
         <h2>User Profile</h2>
+        {error && (
+          <Message variant="danger">
+            {" "}
+            {error.status}: {error.statusText}{" "}
+          </Message>
+        )}
+        {loading && <Loader />}
+
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
@@ -93,7 +101,7 @@ function ProfileScreen() {
           <Form.Group controlId="password">
             <Form.Label>Password</Form.Label>
             <Form.Control
-            //   required
+              //   required
               type="password"
               placeholder="Enter your password"
               value={password}
@@ -104,7 +112,7 @@ function ProfileScreen() {
           <Form.Group controlId="passwordConfirm">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
-            //   required
+              //   required
               type="password"
               placeholder="Re-enter your password"
               value={confirmPassword}
