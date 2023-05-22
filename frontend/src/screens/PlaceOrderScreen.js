@@ -51,9 +51,9 @@ function PlaceOrderScreen() {
   useEffect(() => {
     if (success) {
       navigate(`/order/${order._id}`);
-      // dispatch({ type: ORDER_CREATE_RESET });
+      dispatch({ type: ORDER_CREATE_RESET });
     }
-  }, [success, navigate]);
+  }, [success, navigate, dispatch, order]);
 
   const placeOrder = () => {
     console.log("Placed Order");
