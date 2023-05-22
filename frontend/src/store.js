@@ -18,7 +18,7 @@ import {
   productListReducer,
   productDetailsReducer,
 } from "./reducers/productReducers";
-import { cartReducer } from "./reducers/cartReducers";
+import { cartReducer, orderCreateReducer } from "./reducers/cartReducers";
 import {
   userLoginReducer,
   userRegisterReducer,
@@ -40,6 +40,7 @@ const reducer = {
   userRegister: userRegisterReducer,
   userProfile: userProfileReducer,
   userProfileUpdate: userProfileUpdateReducer,
+  orderCreate: orderCreateReducer,
 };
 
 /* These lines of code are retrieving data from the browser's local storage and parsing it into
