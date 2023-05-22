@@ -60,6 +60,7 @@ function ProfileScreen() {
     e.preventDefault();
 
     if (password !== confirmPassword) {
+      console.log('ERROR');
       setMessage("Passwords do not match");
     } else {
       // console.log("Updating...");
@@ -71,6 +72,7 @@ function ProfileScreen() {
           password: password,
         })
       );
+      setMessage("");
     }
   };
 
@@ -78,10 +80,9 @@ function ProfileScreen() {
     <Row>
       <Col md={3}>
         <h2>User Profile</h2>
-        {error && (
+        {message && (
           <Message variant="danger">
-            {" "}
-            {error.status}: {error.statusText}{" "}
+            {message}
           </Message>
         )}
         {loading && <Loader />}
