@@ -14,11 +14,12 @@ import logger from "redux-logger";
 from `productReducers.js`, `cartReducer` is imported from `cartReducers.js`, and `userLoginReducer`
 is imported from `userReducers.js`. These reducer functions are then combined into a single
 `reducer` object that is passed to the `configureStore` function to create the Redux store. */
+import { orderCreateReducer } from "./reducers/orderReducers";
 import {
   productListReducer,
   productDetailsReducer,
 } from "./reducers/productReducers";
-import { cartReducer, orderCreateReducer } from "./reducers/cartReducers";
+import { cartReducer } from "./reducers/cartReducers";
 import {
   userLoginReducer,
   userRegisterReducer,
