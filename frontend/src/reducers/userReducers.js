@@ -67,6 +67,20 @@ export const userRegisterReducer = (state = {}, action) => {
   }
 };
 
+/**
+ * This is a reducer function that handles actions related to user profile, such as requesting,
+ * success, and failure.
+ * @param [state] - The current state of the userProfileReducer. It is an object that contains a user
+ * property which is initially an empty object.
+ * @param action - The `action` parameter in this code refers to an object that describes the action
+ * being performed. It typically has a `type` property that describes the type of action being
+ * performed, and may also have additional properties that provide data or context for the action. The
+ * reducer function uses the `action` parameter
+ * @returns The `userProfileReducer` function returns an object with properties `loading`,
+ * `userProfile`, and `error`. The initial state of `state` is an object with a `user` property set to
+ * an empty object. The `switch` statement handles different cases based on the `action.type` passed
+ * in. If the `action.type` is `USER_PROFILE_SUCCESS`, the function returns the userProfile object.
+ */
 export const userProfileReducer = (state = { user: {} }, action) => {
   switch (action.type) {
     case USER_PROFILE_REQUEST:
@@ -80,12 +94,26 @@ export const userProfileReducer = (state = { user: {} }, action) => {
   }
 };
 
+/**
+ * This is a reducer function that handles state updates for user profile updates, including loading,
+ * success, and error states.
+ * @param [state] - The current state of the userProfileUpdateReducer. If no state is provided, it
+ * defaults to an empty object.
+ * @param action - The `action` parameter in this reducer function refers to an object that contains
+ * information about the action being dispatched. It typically has two properties: `type` (a string
+ * that describes the type of action being performed) and `payload` (any data that needs to be passed
+ * along with the action).
+ * @returns The `userProfileUpdateReducer` function returns an object with different properties based
+ * on the action type received. If the action type is `USER_PROFILE_UPDATE_REQUEST`, it returns an
+ * object with `loading` set to `true`. If the action type is `USER_PROFILE_UPDATE_SUCCESS`, it returns
+ * an object with `loading` set to `false`, `success` set to `true`, and `userProfile` object.
+ */
 export const userProfileUpdateReducer = (state = { }, action) => {
   switch (action.type) {
       case USER_PROFILE_UPDATE_REQUEST:
         return { loading: true };
       case USER_PROFILE_UPDATE_SUCCESS:
-        return { loading: false, success: true, userProfile: action.payload };
+        return { loading: false, success: true, userUpdate: action.payload };
       case USER_PROFILE_UPDATE_FAIL:
         return { loading: false, error: action.payload };
       case USER_PROFILE_UPDATE_RESET:
