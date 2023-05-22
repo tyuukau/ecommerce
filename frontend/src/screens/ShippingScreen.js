@@ -1,45 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  // useEffect
+} from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import {
+  // Link,
+  useNavigate,
+  // useLocation
+} from "react-router-dom";
 
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 
-import Loader from "../components/Loader";
-import Message from "../components/Message";
 import CheckoutSteps from "../components/CheckoutSteps";
 import FormContainer from "../components/FormContainer";
 
 import { saveShippingAddress } from "../actions/cartActions";
 
 function ShippingScreen() {
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [country, setCountry] = useState("");
-
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
   const dispatch = useDispatch();
 
-  const cart = useSelector(state => state.cart);
+  const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
+
+  const [address, setAddress] = useState(shippingAddress.address);
+  const [city, setCity] = useState(shippingAddress.city);
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
+  const [country, setCountry] = useState(shippingAddress.country);
 
   const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
     // console.log('Submitted');
-    dispatch(saveShippingAddress({address, city, postalCode, country}));
-    navigate("/payment"); 
+    dispatch(saveShippingAddress({ address, city, postalCode, country }));
+    navigate("/payment");
   };
- 
+
   return (
     <FormContainer>
-      <CheckoutSteps step1 step2/>
+      <CheckoutSteps step1 step2 />
       <h1>Shipping</h1>
+
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="address">
           <Form.Label>Address</Form.Label>
@@ -81,7 +84,7 @@ function ShippingScreen() {
           ></Form.Control>
         </Form.Group>
 
-        <Button type='submit' variant='primary'>
+        <Button type="submit" variant="primary">
           Continue
         </Button>
       </Form>
