@@ -19,6 +19,7 @@ import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import ShippingScreen from "./screens/ShippingScreen";
 
 /**
  * This is a React function that sets up the routing and structure for a web application with a header,
@@ -42,6 +43,7 @@ function App() {
             <Route path="/login" Component={LoginScreen} />
             <Route path="/register" Component={RegisterScreen} />
             <Route path="/profile" Component={ProfileScreen} />
+            <Route path="/shipping" Component={ShippingScreen} />
           </Routes>
         </Container>
       </main>
