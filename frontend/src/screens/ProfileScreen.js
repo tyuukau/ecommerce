@@ -28,9 +28,6 @@ function ProfileScreen() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  console.log(userInfo);
-  console.log(userProfile);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,7 +57,7 @@ function ProfileScreen() {
       setMessage("Passwords do not match");
     } else {
       console.log("Updating...");
-    }
+    } 
   };
 
   return (
