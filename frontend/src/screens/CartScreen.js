@@ -77,7 +77,7 @@ function CartScreen() {
    * The function redirects the user to the login page with a redirect parameter set to "shipping".
    */
   const checkoutHandler = () => {
-    navigate("/login?redirect=/shipping");
+     navigate("/login?redirect=/shipping");
   };
 
   /**
