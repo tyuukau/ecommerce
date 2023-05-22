@@ -1,4 +1,8 @@
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstants";
+import {
+  CART_ADD_ITEM,
+  CART_REMOVE_ITEM,
+  CART_SHIPPING_ADDRESS_SAVE,
+} from "../constants/cartConstants";
 
 /**
  * This is a reducer function that manages the state of a shopping cart by adding or removing items
@@ -13,7 +17,7 @@ import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstants";
  * exists in the cartItems array and either updates the existing item or adds a new item to the array.
  * If the action type is `CART_REMOVE_ITEM`, it removes the item from the cart.
  */
-export const cartReducer = (state = { cartItems: [] }, action) => {
+export const cartReducer = (state = { cartItems: [], shippingAddress: {} }, action) => {
   switch (action.type) {
     case CART_ADD_ITEM:
       const item = action.payload;
@@ -32,12 +36,18 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
           cartItems: [...state.cartItems, item],
         };
       }
- 
+
     case CART_REMOVE_ITEM:
       return {
         ...state,
         cartItems: state.cartItems.filter((x) => x.product !== action.payload),
       };
+
+    case CART_SHIPPING_ADDRESS_SAVE:
+      return {
+        ...state,
+        shippingAddress: action.payload,
+      }
 
     default:
       return state;

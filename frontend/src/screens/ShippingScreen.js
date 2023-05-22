@@ -8,7 +8,10 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import CheckoutSteps from "../components/CheckoutSteps";
 import FormContainer from "../components/FormContainer";
+
+import { saveShippingAddress } from "../actions/cartActions";
 
 function ShippingScreen() {
   const [address, setAddress] = useState("");
@@ -16,23 +19,26 @@ function ShippingScreen() {
   const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
 
-  const dispatch = useDispatch();
-
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const dispatch = useDispatch();
+
+  const cart = useSelector(state => state.cart);
+  const { shippingAddress } = cart;
 
   const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('Submitted');
+    // console.log('Submitted');
+    dispatch(saveShippingAddress({address, city, postalCode, country}));
+    navigate("/payment"); 
   };
-
+ 
   return (
     <FormContainer>
+      <CheckoutSteps />
       <h1>Shipping</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="address">
