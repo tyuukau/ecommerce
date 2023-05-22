@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from ..models import Product, Order, OrderItem, ShippingAddress
 from django.contrib.auth.models import User
-from ..serializers import ProductSerializer
+from ..serializers import ProductSerializer, OrderSerializer
 # from .products import products
 
 from django.contrib.auth.hashers import make_password
@@ -66,6 +66,5 @@ def addOrderItems(request):
             product.countInStock -= item.qty
             product.save()
 
-        # serializer = OrderSerializer(order, many=False)
-        # return Response(serializer.data)
-        return Response("order")
+        serializer = OrderSerializer(order, many=False)
+        return Response(serializer.data)
