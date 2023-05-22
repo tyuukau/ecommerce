@@ -30,6 +30,10 @@ function ProductScreen() {
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
+/* `const { loading, error, product } = productDetails;` is using destructuring assignment to extract
+the `loading`, `error`, and `product` properties from the `productDetails` object returned by the
+`useSelector` hook. This allows us to easily access these properties in the component without having
+to write `productDetails.loading`, `productDetails.error`, and `productDetails.product` every time. */
   const { loading, error, product } = productDetails;
 
   let { id } = useParams();
