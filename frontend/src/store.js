@@ -81,7 +81,7 @@ created Redux store, which is assigned to the `store` constant. */
 const store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
-  devTools: process.env.NODE_ENV !== "production",
+  devTools: true,
   preloadedState,
   //   enhancers: [batchedSubscribe(debounceNotify)],
 });

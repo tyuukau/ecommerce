@@ -162,7 +162,7 @@ function CartScreen() {
             </ListGroup.Item>
 
             <ListGroup.Item>
-              ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)}
+              ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
             </ListGroup.Item>
 
             <ListGroup.Item>
