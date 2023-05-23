@@ -23,21 +23,21 @@ import { createOrder } from "../actions/orderActions";
 import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 
 function PlaceOrderScreen() {
-  const cart = useSelector((state) => state.cart);
-
-  const dispatch = useDispatch();
-
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, error, success } = orderCreate;
 
-  cart.itemsPrice = cart.cartItems
+  const dispatch = useDispatch();
+
+  const cart = useSelector((state) => state.cart);
+
+  var itemsPrice = cart.cartItems
     .reduce((acc, item) => acc + item.price * item.qty, 0)
     .toFixed(2);
-  cart.shippingPrice = (cart.itemsPrice > 100 ? 0 : 10).toFixed(2);
-  cart.taxPrice = Number(0.082 * cart.itemsPrice).toFixed(2);
+  cart.shippingPrice = (itemsPrice > 100 ? 0 : 10).toFixed(2);
+  cart.taxPrice = Number(0.082 * itemsPrice).toFixed(2);
 
   cart.totalPrice = (
-    Number(cart.itemsPrice) +
+    Number(itemsPrice) +
     Number(cart.shippingPrice) +
     Number(cart.taxPrice)
   ).toFixed(2);
@@ -56,13 +56,12 @@ function PlaceOrderScreen() {
   }, [success, navigate, dispatch, order]);
 
   const placeOrder = () => {
-    console.log("Placed Order");
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
         shippingAddress: cart.shippingAddress,
         paymentMethod: cart.paymentMethod,
-        itemsPrice: cart.itemsPrice,
+        itemsPrice: itemsPrice,
         shippingPrice: cart.shippingPrice,
         taxPrice: cart.taxPrice,
         totalPrice: cart.totalPrice,
@@ -143,7 +142,7 @@ function PlaceOrderScreen() {
               <ListGroup.Item>
                 <Row>
                   <Col>Items:</Col>
-                  <Col>${cart.itemsPrice}</Col>
+                  <Col>${itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
 
