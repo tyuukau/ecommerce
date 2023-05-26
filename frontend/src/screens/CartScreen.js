@@ -77,7 +77,7 @@ function CartScreen() {
    * The function redirects the user to the login page with a redirect parameter set to "shipping".
    */
   const checkoutHandler = () => {
-    navigate("/login?redirect=shipping");
+     navigate("/login?redirect=/shipping");
   };
 
   /**
@@ -162,7 +162,7 @@ function CartScreen() {
             </ListGroup.Item>
 
             <ListGroup.Item>
-              ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)}
+              ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
             </ListGroup.Item>
 
             <ListGroup.Item>

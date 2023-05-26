@@ -14,6 +14,7 @@ import logger from "redux-logger";
 from `productReducers.js`, `cartReducer` is imported from `cartReducers.js`, and `userLoginReducer`
 is imported from `userReducers.js`. These reducer functions are then combined into a single
 `reducer` object that is passed to the `configureStore` function to create the Redux store. */
+import { orderCreateReducer } from "./reducers/orderReducers";
 import {
   productListReducer,
   productDetailsReducer,
@@ -40,6 +41,7 @@ const reducer = {
   userRegister: userRegisterReducer,
   userProfile: userProfileReducer,
   userProfileUpdate: userProfileUpdateReducer,
+  orderCreate: orderCreateReducer,
 };
 
 /* These lines of code are retrieving data from the browser's local storage and parsing it into
@@ -48,6 +50,10 @@ const cartItemsFromStorage = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : [];
 
+const shippingAddressFromStorage = localStorage.getItem("shippingAddress")
+  ? JSON.parse(localStorage.getItem("shippingAddress"))
+  : {};
+
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
@@ -55,7 +61,10 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
 /* `const preloadedState` is an object that contains the initial state of the Redux store. It is used
 to hydrate the store with data that was previously saved in the browser's local storage. */
 const preloadedState = {
-  cart: { cartItems: cartItemsFromStorage },
+  cart: {
+    cartItems: cartItemsFromStorage,
+    shippingAddress: shippingAddressFromStorage,
+  },
   userLogin: { userInfo: userInfoFromStorage },
 };
 
@@ -72,7 +81,7 @@ created Redux store, which is assigned to the `store` constant. */
 const store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
-  devTools: process.env.NODE_ENV !== "production",
+  devTools: true,
   preloadedState,
   //   enhancers: [batchedSubscribe(debounceNotify)],
 });
