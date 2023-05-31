@@ -18,6 +18,8 @@ import {
   // USER_PROFILE_UPDATE_RESET,
 } from "../constants/userConstants";
 
+import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
+
 /**
  * This is a login function that sends a POST request to the server with the user's email and password,
  * dispatches actions based on the response, and stores the user's information in local storage.
@@ -60,9 +62,10 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
-  localStorage.removeItem("userInfo");
-  dispatch({ type: USER_LOGOUT });
-  dispatch({ type: USER_PROFILE_RESET });
+  localStorage.removeItem('userInfo')
+  dispatch({ type: USER_LOGOUT })
+  dispatch({ type: USER_PROFILE_RESET })
+  dispatch({ type: ORDER_LIST_MY_RESET })
 };
 
 export const register = (name, email, password) => async (dispatch) => {
