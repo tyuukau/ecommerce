@@ -1,7 +1,4 @@
-import React, {
-  // useState,
-  useEffect,
-} from "react";
+import React, { useEffect } from "react";
 
 import {
   // Button,
@@ -12,11 +9,7 @@ import {
   Card,
 } from "react-bootstrap";
 
-import {
-  Link,
-  useParams,
-  // useNavigate
-} from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -27,7 +20,7 @@ import Loader from "../components/Loader";
 
 import {
   getOrderDetails,
-  //   payOrder,
+  payOrder,
   //   deliverOrder,
 } from "../actions/orderActions";
 
@@ -40,19 +33,19 @@ function OrderScreen({ match }) {
   let { id } = useParams();
   const dispatch = useDispatch();
 
-  //   const [sdkReady, setSdkReady] = useState(false);
+//   const [sdkReady, setSdkReady] = useState(false);
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, error, loading } = orderDetails;
 
-  //   const orderPay = useSelector((state) => state.orderPay);
-  //   const { loading: loadingPay, success: successPay } = orderPay;
+  const orderPay = useSelector((state) => state.orderPay);
+  const { loading: loadingPay, success: successPay } = orderPay;
 
-  //   const orderDeliver = useSelector((state) => state.orderDeliver);
-  //   const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
-  //   const userLogin = useSelector((state) => state.userLogin);
-  //   const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   if (!loading && !error) {
     order.itemsPrice = order.orderItems
@@ -60,54 +53,42 @@ function OrderScreen({ match }) {
       .toFixed(2);
   }
 
-  //   const addPayPalScript = () => {
-  //     const script = document.createElement("script");
-  //     script.type = "text/javascript";
-  //     script.src =
-  //       "https://www.paypal.com/sdk/js?client-id=AeDXja18CkwFUkL-HQPySbzZsiTrN52cG13mf9Yz7KiV2vNnGfTDP0wDEN9sGlhZHrbb_USawcJzVDgn";
-  //     script.async = true;
-  //     script.onload = () => {
-  //       setSdkReady(true);
-  //     };
-  //     document.body.appendChild(script);
-  //   };
+  const addPayPalScript = () => {
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src =
+      "https://www.paypal.com/sdk/js?client-id=AeDXja18CkwFUkL-HQPySbzZsiTrN52cG13mf9Yz7KiV2vNnGfTDP0wDEN9sGlhZHrbb_USawcJzVDgn";
+    script.async = true;
+    // script.onload = () => {
+    //   setSdkReady(true);
+    // };
+    document.body.appendChild(script);
+  };
 
-  //   navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // if (!userInfo) {
-    //   navigate("/login");
-    // }
-
-    // if ( !order ||
-    //   successPay ||
-    //   order._id !== Number(id) ||
-    //   successDeliver
-    // ) {
-    //   dispatch({ type: ORDER_PAY_RESET });
-    //   dispatch({ type: ORDER_DELIVER_RESET });
-
-    //   dispatch(getOrderDetails(id));
-    // } else if (!order.isPaid) {
-    //   if (!window.paypal) {
-    //     addPayPalScript();
-    //   } else {
-    //     setSdkReady(true);
-    //   }
-    // }
-    if (!order || order._id !== Number(id)) {
-      dispatch(getOrderDetails(id));
+    if (!userInfo) {
+      navigate("/login");
     }
-  }, [
-    dispatch,
-    order,
-    id,
-    // successPay, successDeliver
-  ]);
 
-  //   const successPaymentHandler = (paymentResult) => {
-  //     dispatch(payOrder(id, paymentResult));
-  //   };
+    if (!order || successPay || order._id !== Number(id) || successDeliver) {
+      //   dispatch({ type: ORDER_PAY_RESET });
+      //   dispatch({ type: ORDER_DELIVER_RESET });
+
+      dispatch(getOrderDetails(id));
+    } else if (!order.isPaid) {
+      if (!window.paypal) {
+        addPayPalScript();
+      } else {
+        // setSdkReady(true);
+      }
+    }
+  }, [dispatch, navigate, userInfo, order, id, successPay, successDeliver]);
+
+  const successPaymentHandler = (paymentResult) => {
+    dispatch(payOrder(id, paymentResult));
+  };
 
   //   const deliverHandler = () => {
   //     dispatch(deliverOrder(order));
