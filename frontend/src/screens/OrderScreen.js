@@ -1,28 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  // useState,
+  useEffect,
+} from "react";
 
-import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import {
+  // Button,
+  Row,
+  Col,
+  ListGroup,
+  Image,
+  Card,
+} from "react-bootstrap";
+
+import {
+  Link,
+  useParams,
+  // useNavigate
+} from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { PayPalButton } from "react-paypal-button-v2";
+// import { PayPalButton } from "react-paypal-button-v2";
 
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 
 import {
   getOrderDetails,
-  payOrder,
-  deliverOrder,
+  //   payOrder,
+  //   deliverOrder,
 } from "../actions/orderActions";
 
-import {
-  ORDER_PAY_RESET,
-  ORDER_DELIVER_RESET,
-} from "../constants/orderConstants";
+// import {
+//   ORDER_PAY_RESET,
+//   ORDER_DELIVER_RESET,
+// } from "../constants/orderConstants";
 
-function OrderScreen({ match, history }) {
-  const orderId = match.params.id;
+function OrderScreen({ match }) {
+  let { id } = useParams();
   const dispatch = useDispatch();
 
   //   const [sdkReady, setSdkReady] = useState(false);
@@ -36,8 +51,8 @@ function OrderScreen({ match, history }) {
   //   const orderDeliver = useSelector((state) => state.orderDeliver);
   //   const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  //   const userLogin = useSelector((state) => state.userLogin);
+  //   const { userInfo } = userLogin;
 
   if (!loading && !error) {
     order.itemsPrice = order.orderItems
@@ -57,20 +72,22 @@ function OrderScreen({ match, history }) {
   //     document.body.appendChild(script);
   //   };
 
+  //   navigate = useNavigate();
+
   useEffect(() => {
     // if (!userInfo) {
-    //   history.push("/login");
+    //   navigate("/login");
     // }
 
     // if ( !order ||
     //   successPay ||
-    //   order._id !== Number(orderId) ||
+    //   order._id !== Number(id) ||
     //   successDeliver
     // ) {
     //   dispatch({ type: ORDER_PAY_RESET });
     //   dispatch({ type: ORDER_DELIVER_RESET });
 
-    //   dispatch(getOrderDetails(orderId));
+    //   dispatch(getOrderDetails(id));
     // } else if (!order.isPaid) {
     //   if (!window.paypal) {
     //     addPayPalScript();
@@ -78,23 +95,23 @@ function OrderScreen({ match, history }) {
     //     setSdkReady(true);
     //   }
     // }
-    if (!order || order._id !== Number(orderId)) {
-      dispatch(getOrderDetails(orderId));
+    if (!order || order._id !== Number(id)) {
+      dispatch(getOrderDetails(id));
     }
   }, [
     dispatch,
     order,
-    orderId,
+    id,
     // successPay, successDeliver
   ]);
 
-  const successPaymentHandler = (paymentResult) => {
-    dispatch(payOrder(orderId, paymentResult));
-  };
+  //   const successPaymentHandler = (paymentResult) => {
+  //     dispatch(payOrder(id, paymentResult));
+  //   };
 
-  const deliverHandler = () => {
-    dispatch(deliverOrder(order));
-  };
+  //   const deliverHandler = () => {
+  //     dispatch(deliverOrder(order));
+  //   };
 
   return loading ? (
     <Loader />
@@ -102,7 +119,7 @@ function OrderScreen({ match, history }) {
     <Message variant="danger">{error}</Message>
   ) : (
     <div>
-      <h1>Order: {order.Id}</h1>
+      <h1>Order: {order._id}</h1>
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
