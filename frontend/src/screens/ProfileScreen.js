@@ -15,6 +15,7 @@ import Message from "../components/Message";
 // import FormContainer from "../components/FormContainer";
 
 import { getUserProfile, updateUserProfile } from "../actions/userActions";
+import { listMyOrders } from "../actions/orderActions";
 
 import { USER_PROFILE_UPDATE_RESET } from "../constants/userConstants";
 
@@ -48,6 +49,7 @@ function ProfileScreen() {
       if (!userProfile || !userProfile.name || success) {
         dispatch({ type: USER_PROFILE_UPDATE_RESET });
         dispatch(getUserProfile("profile"));
+        dispatch(listMyOrders());
       } else {
         setName(userProfile.name);
         setEmail(userProfile.email);
