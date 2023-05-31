@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
-  Form,
   Button,
   Col,
   Row,
@@ -15,7 +14,6 @@ import {
 } from "react-bootstrap";
 
 import CheckoutSteps from "../components/CheckoutSteps";
-import FormContainer from "../components/FormContainer";
 import Message from "../components/Message";
 
 import { createOrder } from "../actions/orderActions";
