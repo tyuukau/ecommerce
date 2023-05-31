@@ -14,7 +14,7 @@ import logger from "redux-logger";
 from `productReducers.js`, `cartReducer` is imported from `cartReducers.js`, and `userLoginReducer`
 is imported from `userReducers.js`. These reducer functions are then combined into a single
 `reducer` object that is passed to the `configureStore` function to create the Redux store. */
-import { orderCreateReducer } from "./reducers/orderReducers";
+import { orderCreateReducer, orderDetailsReducer } from "./reducers/orderReducers";
 import {
   productListReducer,
   productDetailsReducer,
@@ -42,6 +42,7 @@ const reducer = {
   userProfile: userProfileReducer,
   userProfileUpdate: userProfileUpdateReducer,
   orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
 };
 
 /* These lines of code are retrieving data from the browser's local storage and parsing it into
