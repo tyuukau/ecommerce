@@ -140,13 +140,13 @@ function OrderScreen({ match }) {
                 {order.shippingAddress.country}
               </p>
 
-              {/* {order.isDelivered ? (
+              {order.isDelivered ? (
                 <Message variant="success">
                   Delivered on {order.deliveredAt}
                 </Message>
               ) : (
                 <Message variant="warning">Not Delivered</Message>
-              )} */}
+              )}
             </ListGroup.Item>
 
             <ListGroup.Item>
