@@ -41,8 +41,8 @@ function OrderScreen({ match }) {
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
 
-  const orderDeliver = useSelector((state) => state.orderDeliver);
-  const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
+//   const orderDeliver = useSelector((state) => state.orderDeliver);
+//   const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -72,7 +72,9 @@ function OrderScreen({ match }) {
       navigate("/login");
     }
 
-    if (!order || successPay || order._id !== Number(id) || successDeliver) {
+    if (!order || successPay || order._id !== Number(id) 
+    // || successDeliver
+    ) {
       //   dispatch({ type: ORDER_PAY_RESET });
       //   dispatch({ type: ORDER_DELIVER_RESET });
 
@@ -84,7 +86,9 @@ function OrderScreen({ match }) {
         // setSdkReady(true);
       }
     }
-  }, [dispatch, navigate, userInfo, order, id, successPay, successDeliver]);
+  }, [dispatch, navigate, userInfo, order, id, successPay, 
+    // successDeliver
+]);
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(id, paymentResult));

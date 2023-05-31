@@ -102,7 +102,9 @@ def updateOrderToPaid(request, pk):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getMyOrders(request):
+    print("OK")
     user = request.user
+    print("OK1")
     orders = user.order_set.all()
     serializer = OrderSerializer(orders, many=True)
     return Response(serializer.data)
