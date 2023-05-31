@@ -30,6 +30,7 @@ import {
   userRegisterReducer,
   userProfileReducer,
   userProfileUpdateReducer,
+  userListReducer
 } from "./reducers/userReducers";
 
 /* `const reducer` is an object that combines all the individual reducer functions from separate files
@@ -41,11 +42,15 @@ key name indicating the slice of state that the reducer function will manage. Fo
 const reducer = {
   productList: productListReducer,
   productDetails: productDetailsReducer,
+  
   cart: cartReducer,
+
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userProfile: userProfileReducer,
   userProfileUpdate: userProfileUpdateReducer,
+  userList: userListReducer,
+
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
