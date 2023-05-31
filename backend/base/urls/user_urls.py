@@ -9,4 +9,6 @@ urlpatterns = [
     path('register/', views.createUser, name='register'),
     
     path('delete/<str:pk>/', views.deleteUser, name='user-delete'),
+
+    path('<str:pk>/', views.getUserById, name='user'),
 ]

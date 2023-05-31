@@ -6,7 +6,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import {
   listUsers,
-  // , deleteUser
+  deleteUser,
 } from "../actions/userActions";
 import { useNavigate } from "react-router-dom";
 
@@ -19,8 +19,8 @@ function UserListScreen() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-//   const userDelete = useSelector((state) => state.userDelete);
-//   const { success: successDelete } = userDelete;
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success: successDelete } = userDelete;
 
   const navigate = useNavigate();
 
@@ -31,13 +31,13 @@ function UserListScreen() {
       navigate("/login");
     }
   }, [dispatch, navigate, 
-    // successDelete, 
+    successDelete, 
     userInfo]);
 
     const deleteHandler = (id) => {
-    //   if (window.confirm("Are you sure you want to delete this user?")) {
-    //     dispatch(deleteUser(id));
-    //   }
+      if (window.confirm("Are you sure you want to delete this user?")) {
+        dispatch(deleteUser(id));
+      }
     };
 
   return (
