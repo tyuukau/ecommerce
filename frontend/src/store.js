@@ -31,7 +31,8 @@ import {
   userProfileReducer,
   userProfileUpdateReducer,
   userListReducer,
-  userDeleteReducer
+  userDeleteReducer,
+  userUpdateReducer,
 } from "./reducers/userReducers";
 
 /* `const reducer` is an object that combines all the individual reducer functions from separate files
@@ -52,6 +53,7 @@ const reducer = {
   userProfileUpdate: userProfileUpdateReducer,
   userList: userListReducer,
   userDelete: userDeleteReducer,
+  userUpdate: userUpdateReducer,
 
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,

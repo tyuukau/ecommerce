@@ -25,6 +25,7 @@ import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import UserListScreen from "./screens/UserListScreen";
+import UserEditScreen from "./screens/UserEditScreen";
 
 /**
  * This is a React function that sets up the routing and structure for a web application with a header,
@@ -52,7 +53,9 @@ function App() {
             <Route path="/payment" Component={PaymentScreen} />
             <Route path="/placeorder" Component={PlaceOrderScreen} />
             <Route path='/order/:id' Component={OrderScreen} />
+
             <Route path="admin/userlist" Component={UserListScreen} />
+            <Route path="admin/user/:id/edit" Component={UserEditScreen} />
           </Routes>
         </Container>
       </main>
