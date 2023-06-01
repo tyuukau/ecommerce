@@ -7,6 +7,7 @@ import React from "react";
  * the rating), and "color" (a string representing the color of the stars). The component returns a div
  * containing five spans, holding the five-star rating.
  */
+
 function Rating({ value, text, color }) {
   return (
     <div className="rating">
@@ -18,10 +19,11 @@ function Rating({ value, text, color }) {
               ? "fas fa-star"
               : value >= 0.5
               ? "fas fa-star-half-alt"
-              : "fas fa-star"
+              : "far fa-star"
           }
         ></i>
       </span>
+
       <span>
         <i
           style={{ color }}
@@ -30,10 +32,11 @@ function Rating({ value, text, color }) {
               ? "fas fa-star"
               : value >= 1.5
               ? "fas fa-star-half-alt"
-              : "fas fa-star"
+              : "far fa-star"
           }
         ></i>
       </span>
+
       <span>
         <i
           style={{ color }}
@@ -42,10 +45,11 @@ function Rating({ value, text, color }) {
               ? "fas fa-star"
               : value >= 2.5
               ? "fas fa-star-half-alt"
-              : "fas fa-star"
+              : "far fa-star"
           }
         ></i>
       </span>
+
       <span>
         <i
           style={{ color }}
@@ -54,10 +58,11 @@ function Rating({ value, text, color }) {
               ? "fas fa-star"
               : value >= 3.5
               ? "fas fa-star-half-alt"
-              : "fas fa-star"
+              : "far fa-star"
           }
         ></i>
       </span>
+
       <span>
         <i
           style={{ color }}
@@ -66,10 +71,11 @@ function Rating({ value, text, color }) {
               ? "fas fa-star"
               : value >= 4.5
               ? "fas fa-star-half-alt"
-              : "fas fa-star"
+              : "far fa-star"
           }
         ></i>
       </span>
+
       <span>{text && text}</span>
     </div>
   );
