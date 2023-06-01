@@ -5,6 +5,8 @@ from .models import *
 
 # This is a serializer class for the Product model that includes all fields.
 class ProductSerializer(serializers.ModelSerializer):
+    reviews = serializers.SerializerMethodField(read_only=True)
+    
     class Meta:
         model = Product
         fields = '__all__'
