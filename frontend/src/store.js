@@ -26,6 +26,7 @@ import {
 
   productCreateReducer,
   productDeleteReducer,
+  productUpdateReducer,
 } from "./reducers/productReducers";
 import { cartReducer } from "./reducers/cartReducers";
 import {
@@ -51,6 +52,7 @@ const reducer = {
   productDetails: productDetailsReducer,
   productCreate: productCreateReducer,
   productDelete: productDeleteReducer,
+  productUpdate: productUpdateReducer,
 
   cart: cartReducer,
 
