@@ -27,7 +27,8 @@ def getProducts(request):
         query = ''
     print(query)
     
-    products = Product.objects.all()
+    # products = Product.objects.all()
+    products = Product.objects.filter(name__icontains=query).order_by('-createdAt')
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
     
