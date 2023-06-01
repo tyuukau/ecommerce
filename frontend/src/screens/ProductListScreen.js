@@ -8,7 +8,7 @@ import Message from "../components/Message";
 import {
   listProducts,
   deleteProduct,
-  // createProduct,
+  createProduct,
 } from "../actions/productActions";
 // import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
 
@@ -74,7 +74,7 @@ function ProductListScreen() {
   };
 
   const createProductHandler = () => {
-    // dispatch(createProduct());
+    dispatch(createProduct());
   };
 
   return (
