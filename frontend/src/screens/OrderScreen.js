@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import {
-  // Button,
+  Button,
   Row,
   Col,
   ListGroup,
@@ -21,13 +21,13 @@ import Loader from "../components/Loader";
 import {
   getOrderDetails,
   payOrder,
-  //   deliverOrder,
+  deliverOrder,
 } from "../actions/orderActions";
 
-// import {
-//   ORDER_PAY_RESET,
-//   ORDER_DELIVER_RESET,
-// } from "../constants/orderConstants";
+import {
+  ORDER_PAY_RESET,
+  ORDER_DELIVER_RESET,
+} from "../constants/orderConstants";
 
 function OrderScreen({ match }) {
   let { id } = useParams();
@@ -41,8 +41,8 @@ function OrderScreen({ match }) {
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
 
-//   const orderDeliver = useSelector((state) => state.orderDeliver);
-//   const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -73,10 +73,10 @@ function OrderScreen({ match }) {
     }
 
     if (!order || successPay || order._id !== Number(id) 
-    // || successDeliver
+    || successDeliver
     ) {
-      //   dispatch({ type: ORDER_PAY_RESET });
-      //   dispatch({ type: ORDER_DELIVER_RESET });
+        dispatch({ type: ORDER_PAY_RESET });
+        dispatch({ type: ORDER_DELIVER_RESET });
 
       dispatch(getOrderDetails(id));
     } else if (!order.isPaid) {
@@ -86,17 +86,15 @@ function OrderScreen({ match }) {
         // setSdkReady(true);
       }
     }
-  }, [dispatch, navigate, userInfo, order, id, successPay, 
-    // successDeliver
-]);
+  }, [dispatch, navigate, userInfo, order, id, successPay, successDeliver]);
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(id, paymentResult));
   };
 
-  //   const deliverHandler = () => {
-  //     dispatch(deliverOrder(order));
-  //   };
+    const deliverHandler = () => {
+      dispatch(deliverOrder(order));
+    };
 
   return loading ? (
     <Loader />
@@ -234,10 +232,10 @@ function OrderScreen({ match }) {
                 </ListGroup.Item>
               )} */}
             </ListGroup>
-            {/* {loadingDeliver && <Loader />}
+            {loadingDeliver && <Loader />}
             {userInfo &&
               userInfo.isAdmin &&
-              order.isPaid &&
+              // order.isPaid &&
               !order.isDelivered && (
                 <ListGroup.Item>
                   <Button
@@ -248,7 +246,7 @@ function OrderScreen({ match }) {
                     Mark As Delivered
                   </Button>
                 </ListGroup.Item>
-              )} */}
+              )}
           </Card>
         </Col>
       </Row>
