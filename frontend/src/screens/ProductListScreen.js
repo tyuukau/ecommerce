@@ -12,20 +12,20 @@ import {
 } from "../actions/productActions";
 // import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
 
-import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-function ProductListScreen({ history, match }) {
+function ProductListScreen() {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, pages, page } = productList;
 
-  // const productDelete = useSelector((state) => state.productDelete);
-  // const {
-  //   loading: loadingDelete,
-  //   error: errorDelete,
-  //   success: successDelete,
-  // } = productDelete;
+  const productDelete = useSelector((state) => state.productDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete;
 
   // const productCreate = useSelector((state) => state.productCreate);
   // const {
@@ -59,9 +59,9 @@ function ProductListScreen({ history, match }) {
     // }
   }, [
     dispatch,
-    history,
+    navigate,
     userInfo,
-    // successDelete,
+    successDelete,
     // successCreate,
     // createdProduct,
     keyword,
@@ -91,10 +91,10 @@ function ProductListScreen({ history, match }) {
         </Col>
       </Row>
 
-      {/* {loadingDelete && <Loader />}
+      {loadingDelete && <Loader />}
       {errorDelete && <Message variant="danger">{errorDelete}</Message>}
 
-      {loadingCreate && <Loader />}
+      {/* {loadingCreate && <Loader />}
       {errorCreate && <Message variant="danger">{errorCreate}</Message>} */}
 
       {loading ? (
