@@ -19,6 +19,8 @@ import {
   orderDetailsReducer,
   orderPayReducer,
   orderListMyReducer, 
+
+  orderListReducer,
 } from "./reducers/orderReducers";
 import {
   productListReducer,
@@ -68,6 +70,7 @@ const reducer = {
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
   orderListMy: orderListMyReducer,
+  orderList: orderListReducer,
 };
 
 /* These lines of code are retrieving data from the browser's local storage and parsing it into
