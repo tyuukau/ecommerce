@@ -22,7 +22,6 @@ function HomeScreen() {
   let keyword = location.search;
 
   useEffect(() => {
-    console.log(keyword);
     dispatch(listProducts(keyword));
   }, [dispatch, keyword]);
 

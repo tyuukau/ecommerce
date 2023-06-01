@@ -75,10 +75,8 @@ function ProfileScreen() {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      console.log("ERROR");
       setMessage("Passwords do not match");
     } else {
-      // console.log("Updating...");
       dispatch(
         updateUserProfile({
           id: userDetails._id,
