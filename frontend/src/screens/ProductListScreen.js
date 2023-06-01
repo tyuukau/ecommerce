@@ -7,7 +7,7 @@ import Message from "../components/Message";
 // import Paginate from "../components/Paginate";
 import {
   listProducts,
-  // deleteProduct,
+  deleteProduct,
   // createProduct,
 } from "../actions/productActions";
 // import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
@@ -69,7 +69,7 @@ function ProductListScreen({ history, match }) {
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
-      // dispatch(deleteProduct(id));
+      dispatch(deleteProduct(id));
     }
   };
 
