@@ -23,6 +23,7 @@ import {
 import {
   productListReducer,
   productDetailsReducer,
+  productDeleteReducer,
 } from "./reducers/productReducers";
 import { cartReducer } from "./reducers/cartReducers";
 import {
@@ -44,6 +45,7 @@ key name indicating the slice of state that the reducer function will manage. Fo
 const reducer = {
   productList: productListReducer,
   productDetails: productDetailsReducer,
+  productDelete: productDeleteReducer,
 
   cart: cartReducer,
 
