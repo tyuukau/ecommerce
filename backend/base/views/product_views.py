@@ -22,6 +22,11 @@ def getProducts(request):
     products in the database. The data is serialized using the `ProductSerializer` class and is returned
     in JSON format.
     """
+    query = request.query_params.get('keyword')
+    if query == None:
+        query = ''
+    print(query)
+    
     products = Product.objects.all()
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)

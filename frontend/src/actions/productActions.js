@@ -25,10 +25,10 @@ import {
  * This is a Redux action that fetches a list of products from an API and dispatches either a success
  * or fail action based on the response.
  */
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (keyword = "") => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    const { data } = await axios.get("/api/products/");
+    const { data } = await axios.get(`/api/products${keyword}`);
 
     dispatch({
       type: PRODUCT_LIST_SUCCESS,

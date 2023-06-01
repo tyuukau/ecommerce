@@ -10,15 +10,21 @@ import Product from "../components/Product";
 
 import { listProducts } from "../actions/productActions";
 
+import { useLocation } from "react-router-dom";
+
 function HomeScreen() {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
+  const location = useLocation();
+  let keyword = location.search;
+
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    console.log(keyword);
+    dispatch(listProducts(keyword));
+  }, [dispatch, keyword]);
 
   return (
     <div>

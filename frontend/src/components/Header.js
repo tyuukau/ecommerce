@@ -11,6 +11,8 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import { logout } from "../actions/userActions";
 
+import SearchBox from "./SearchBox";
+
 /**
  * This is a React component that renders a header with a navigation bar and links to a shopping cart
  * and login page.
@@ -38,6 +40,7 @@ function Header() {
             </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
+              <SearchBox />
               <Nav className="mr-auto">
                 <LinkContainer to="/cart">
                   <Nav.Link>
@@ -78,7 +81,7 @@ function Header() {
                     </LinkContainer>
                   </NavDropdown>
                 )}
-                
+
                 {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
