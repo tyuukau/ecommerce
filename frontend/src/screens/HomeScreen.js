@@ -7,6 +7,7 @@ import { Row, Col } from "react-bootstrap";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Product from "../components/Product";
+import Paginate from '../components/Paginate'
 
 import { listProducts } from "../actions/productActions";
 
@@ -16,7 +17,7 @@ function HomeScreen() {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
 
   const location = useLocation();
   let keyword = location.search;
@@ -45,6 +46,7 @@ function HomeScreen() {
           </Col>
         ))}
       </Row>
+      <Paginate page={page} pages={pages} keyword={keyword} />
     </div>
   );
 }
