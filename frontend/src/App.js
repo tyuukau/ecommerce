@@ -1,4 +1,3 @@
-
 /* `import { Container } from "react-bootstrap";` is importing the `Container` component from the
 `react-bootstrap` library. This component is used to create a responsive container that centers the
 content and adds padding on the sides. It is being used in the `App` component to wrap around the
@@ -27,6 +26,7 @@ import OrderScreen from "./screens/OrderScreen";
 import UserListScreen from "./screens/UserListScreen";
 import UserEditScreen from "./screens/UserEditScreen";
 import ProductListScreen from "./screens/ProductListScreen";
+import ProductEditScreen from "./screens/ProductEditScreen";
 
 /**
  * This is a React function that sets up the routing and structure for a web application with a header,
@@ -53,12 +53,13 @@ function App() {
             <Route path="/shipping" Component={ShippingScreen} />
             <Route path="/payment" Component={PaymentScreen} />
             <Route path="/placeorder" Component={PlaceOrderScreen} />
-            <Route path='/order/:id' Component={OrderScreen} />
+            <Route path="/order/:id" Component={OrderScreen} />
 
             <Route path="admin/userlist" Component={UserListScreen} />
             <Route path="admin/user/:id/edit" Component={UserEditScreen} />
 
-            <Route path='/admin/productlist' Component={ProductListScreen} />
+            <Route path="/admin/productlist" Component={ProductListScreen} />
+            <Route path="/admin/product/:id/edit" Component={ProductEditScreen} />
           </Routes>
         </Container>
       </main>
